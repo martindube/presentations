@@ -1,0 +1,12 @@
+1- generate text
+http://patorjk.com/software/taag/#p=testall&v=1&f=Slant%20Relief&t=HF%202013%0A%0A
+
+Nice font: Slant Relief, Poison
+
+2- Choose color
+http://misc.flogisoft.com/bash/tip_colors_and_formatting
+
+
+
+x- Play with toilet
+List all fonts: find /usr/local/share/figlet -name "*.?lf" -exec basename {} \; | sed -e "s/\..lf$//" | xargs -I{} toilet -f {} {}

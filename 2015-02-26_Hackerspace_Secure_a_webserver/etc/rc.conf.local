@@ -1,0 +1,6 @@
+ntpd_flags=
+nginx_flags=""
+syslogd_flags="-a /var/www/dev/log"
+pkg_scripts="php_fpm"
+
+#php_fpm_flags=""
