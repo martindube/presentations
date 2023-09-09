@@ -2,8 +2,7 @@
 
 ## Description
 
-A presentation I did at Hackerspace of february 2015 featuring hardening on OpenBSD, nginx, php-fpm, chroots and good practices.
-
+A presentation I did at Hackerspace of February 2015 featuring hardening on OpenBSD, nginx, php-fpm, chroots and good practices.
 
 ## Misc
 

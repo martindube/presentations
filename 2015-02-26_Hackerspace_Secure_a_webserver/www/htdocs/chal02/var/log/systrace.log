@@ -1,0 +1,1 @@
+systrace: deny user: unknown(2001), prog: /bin/ksh, pid: 14714(0)[26867], policy: /bin/ksh, filters: 52, syscall: native-execve(59), filename: /bin/ls, argv: ls

@@ -1,6 +1,6 @@
 # Why NTLM Suck
 
-## Presentation
+## Description
 
 Présentation et screencast d'une présentation sur NTLM préparé avec vn.
 

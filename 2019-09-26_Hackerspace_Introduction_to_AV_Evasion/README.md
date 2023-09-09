@@ -14,4 +14,4 @@ Martin s’intéresse à la sécurité offensive depuis plus de 10 ans. Aujourd�
 
 QuebecSec: https://quebecsec.ca/event/evasion-av.html
 
-Not on youtube.
+The presentation was not recorded.
