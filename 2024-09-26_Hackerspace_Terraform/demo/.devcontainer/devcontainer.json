@@ -1,0 +1,30 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "hashicorp.terraform",
+        "hashicorp.hcl"
+      ],
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "workspaceFolder": "/work",
+  "containerEnv": {
+    "GOOGLE_APPLICATION_CREDENTIALS": "/tmp/application_default_credentials.json"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/quebecsec2024,target=/work,type=bind,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gcloud/application_default_credentials.json,target=/tmp/application_default_credentials.json,type=bind,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh/id_ed25519_quebecsec.pub,target=/work/.ssh/id_ed25519.pub,type=bind,consistency=cached"
+  ]
+}
