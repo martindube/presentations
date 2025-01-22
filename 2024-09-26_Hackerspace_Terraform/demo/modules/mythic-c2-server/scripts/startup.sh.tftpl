@@ -1,0 +1,86 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+# Install stuff
+apt update && apt -y upgrade
+apt-get -y install git vim certbot build-essential
+
+# Set timezone to GMT
+ln -fs /usr/share/zoneinfo/America/Montreal /etc/localtime
+
+# Download and install Mythic
+if [[ ! -d /opt/mythic ]]; then
+  git clone https://github.com/its-a-feature/Mythic /opt/mythic
+  cd /opt/mythic
+  ./install_docker_debian.sh
+  make
+
+  # Add myself to docker group
+  usermod -aG docker ${operator_user}
+
+  # Start all containers
+  ./mythic-cli start  # First start: create config file.
+  ./mythic-cli stop
+
+  # Don't listen on localhost
+  ./mythic-cli config set nginx_bind_localhost_only false
+  #./mythic-cli config set mythic_server_bind_localhost_only false    # Uncomment for dev
+  #./mythic-cli config set rabbitmq_bind_localhost_only false         # Uncomment for dev
+  ./mythic-cli config set nginx_port 443
+  ./mythic-cli config set allowed_ip_blocks "${allowed_ip_blocks}"
+
+  ./mythic-cli start
+
+  # Install C2 profiles
+  ./mythic-cli install github https://github.com/MythicC2Profiles/http
+  #./mythic-cli install github https://github.com/MythicC2Profiles/dns
+
+  # Install agents
+  ./mythic-cli install github https://github.com/MythicAgents/Apollo.git
+  ./mythic-cli install github https://github.com/MythicAgents/thanatos.git
+fi
+
+# Create a cron job that download and install TLS Certificate
+if [[ ! -f /etc/cron.monthly/tls_renew_crontab.sh ]]; then
+  cat >> /etc/cron.monthly/tls_renew_crontab.sh<< EOF
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+DOMAIN=${fqdn}
+CERTS_DIR=/opt/mythic/nginx-docker/ssl
+FULLCHAIN_PEM=/etc/letsencrypt/live/\$DOMAIN/fullchain.pem
+PRIVKEY=/etc/letsencrypt/live/\$DOMAIN/privkey.pem
+
+# HTTP profile must be turned off
+cd /opt/mythic
+./mythic-cli stop
+
+certbot register -n -m ${acme_contact_email} --agree-tos
+
+certbot certonly -n --standalone \\
+                    -d \$DOMAIN
+
+if [[ -f "\$FULLCHAIN_PEM" ]] && [[ -f "\$PRIVKEY" ]]; then
+  echo "Certificates files exist. Copying to docker."
+  cp "\$FULLCHAIN_PEM" "\$CERTS_DIR/mythic-cert.crt"
+  cp "\$PRIVKEY" "\$CERTS_DIR/mythic-ssl.key"
+fi
+
+./mythic-cli start
+EOF
+
+  chmod +x /etc/cron.monthly/tls_renew_crontab.sh
+
+  # Run but allow to fail.
+  /etc/cron.monthly/tls_renew_crontab.sh || true
+fi
+
+
