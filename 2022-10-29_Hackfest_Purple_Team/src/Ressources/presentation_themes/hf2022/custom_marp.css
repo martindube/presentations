@@ -1,0 +1,320 @@
+/**
+* @theme hf2022
+*/
+
+@import 'default';   
+
+/* Palette de couleur officiel (Source: Gabarit Desjardins 16_9 FR.pptx) */
+:root {
+  --color-foreground: #c7c7c7;
+  --color-background1: #262524;
+  --color-background2: #302f2e;
+  --color-codeblock: #d6d6d6;
+  --color-green: rgb(100, 168, 131);
+  --color-dark-green: #00874e;
+  --color-light-green: rgb(142, 201, 169);
+  --color-brown: #6f4530;
+  /* @TODO Ajouter des couleurs */
+}
+
+section {
+  /* From https://github.com/marp-team/marp-core/blob/main/themes/default.scss */
+  align-items: stretch;
+  background-image: url("../Ressources/presentation_themes/hf2022/default_bg.png"); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 26px;
+  width: 1920px;
+  height: 1080px;
+  justify-content: flex-start;
+  padding: 50px 75px 75px 75px;
+  color:var(--color-foreground);
+}
+
+/* 
+* Centrer les images dans les pages de contenu. 
+* Toutefois, ne pas centrer les images des pages de présentation.
+*/
+section.default_slide img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 
+* Aligner à gauche les images dans les pages de contenu. 
+*/
+section.align_left_img img {
+  display: block;
+  margin-right: auto;
+}
+
+/* 
+* Aligner à droite les images dans les pages de contenu. 
+*/
+section.align_right_img img {
+  display: block;
+  margin-left: auto;
+}
+
+/*
+* Page de présentation et de section
+* Le texte est verticalement centré
+*/
+section.separation_page1 {
+  justify-content: center;
+  background-image: url("../Ressources/presentation_themes/hf2022/separation_bg1.png");
+  font-size: 2em;
+}
+
+section.separation_page2 {
+  justify-content: center;
+  background-image: url("../Ressources/presentation_themes/hf2022/separation_bg2.png");
+  font-size: 2em;
+}
+
+section.separation_page3 {
+  justify-content: center;
+  background-image: url("../Ressources/presentation_themes/hf2022/separation_bg3.png");
+  font-size: 2em;
+}
+
+section.nologo {
+  background-image: url("../Ressources/presentation_themes/hf2022/nologo_bg.png");
+}
+
+/* Le header/footer des pages de séparations sont invisible */
+section.separation_page1 > header,
+section.separation_page1 > footer,
+section.separation_page2 > header,
+section.separation_page2 > footer  {
+  color: transparent;
+}
+
+/* Add "Page" prefix and total page number */
+section::after {
+  content: '' attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+}
+
+section.invert {
+  background-image: url("../Ressources/presentation_themes/light/default_bg.png");
+  color: rgb(56, 56, 56);
+}
+section.invert header {
+  color: #a5a5a5;
+}
+section.invert footer {
+  color: #c06464;
+}
+section.invert h1,
+section.invert h2,
+section.invert h3,
+section.invert h4,
+section.invert h5,
+section.invert h6 {
+  color: rgb(56, 56, 56)!important;
+}
+section.invert pre {
+  color: var(--color-background1);
+  background-color: var(--color-codeblock);
+}
+
+/* Pages à 2 columns */
+div.twocols{
+  column-count: 2;
+  height: 100%;
+  
+}
+div.twocols p:first-child,
+div.twocols h1:first-child,
+div.twocols h2:first-child,
+div.twocols h3:first-child,
+div.twocols ul:first-child,
+div.twocols ul li:first-child,
+div.twocols ul li p:first-child{
+  margin-top: 0;
+}
+div.twocols h2 {
+  background-color: var(--color-background2);
+  color: var(--color-foreground);
+  text-align: center;
+  justify-content: center;
+  break-before: column;
+  margin-top: 0;
+  padding: 20px 10px 20px 10px;
+}
+div.twocols h3 {
+  break-before: column;
+  margin-top: 0;
+  padding: 20px 10px 20px 10px;
+}
+
+
+/* Pages à 3 columns */
+div.threecols{
+  column-count: 3;
+  height: 100%;
+}
+div.threecols p:first-child,
+div.threecols h1:first-child,
+div.threecols h2:first-child,
+div.threecols h3:first-child,
+div.threecols ul:first-child,
+div.threecols ul li:first-child,
+div.threecols ul li p:first-child{
+  margin-top: 0;
+}
+div.threecols h2 {
+  background-color: var(--color-background2);
+  color: var(--color-foreground);
+  text-align: center;
+  break-before: column;
+  margin-top: 0;
+  padding: 20px 10px 20px 10px;
+}
+div.threecols h3 {
+  break-before: column;
+  margin-top: 0;
+  padding: 20px 10px 20px 10px;
+}
+header,
+footer {
+  font-size: .75em;
+  width: 95%;
+  text-align: center;
+}
+
+header {
+  color: #a5a5a5;
+}
+
+footer {
+  color: #c06464;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color:var(--color-foreground);
+}
+
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong,
+h5 strong,
+h6 strong {
+  color:var(--color-green);
+}
+
+a {
+  color:var(--color-green);
+}
+
+/* Block de code */
+pre {
+   color: var(--color-background1);
+   background-color: var(--color-codeblock);
+}
+
+img {
+  background-color: transparent;
+}
+
+img.emoji {
+  display: inline;
+}
+
+/* Tableaux */
+table {
+  font-size: 0.90em;
+  color: var(--color-foreground);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+th {
+  background-color: var(--color-background1);
+  border: 0px!important;
+}
+tr:nth-child(even) {
+  background-color: var(--color-background2)!important;
+}
+tr:nth-child(odd) {
+  background-color: var(--color-background1);
+}
+td {
+  border: 0px!important;
+}
+
+blockquote {
+  border-color: #3d3f43;
+  color: #939699;
+}
+
+/* Puces vert */
+ul li {
+  margin-left: 1em;
+}
+li {
+  margin: 5px; 
+} 
+li li {
+  font-size: .87em;
+} 
+ul { 
+  list-style: none; 
+  min-width: 100% !important;
+  text-indent: -1em;
+  padding-left: .90em;
+}
+ol { 
+  list-style: none; 
+  counter-reset: ol_li
+}
+ul li::before { content: "■ ";  color: var(--color-green); }
+ul li li::before { content: "• ";  color: var(--color-green); }
+ul li li li::before { content: "◦ ";  color: var(--color-green); }
+ol li {
+  counter-increment: li
+}
+ol li::before {
+  content: counter(li) "."; 
+  color: var(--color-green);
+  display: inline-block; 
+  font-weight: bolder;
+  width: 1em;
+  margin-left: -1em
+}
+
+/*  bullet emojis: ■ •  ◦ ▪  */
+
+
+/* Fancy tables */
+.fancy-table1 table thead {
+  display: none;
+}
+.fancy-table1 td:nth-child(1){
+  background-color: var(--color-dark-green);
+  font-weight: bolder;
+}
+
+.fancy-table2 table thead tr:first-child  {
+  border: 0px;
+}
+.fancy-table2 table th:not(:first-child){
+  background-color: var(--color-dark-green);
+  font-weight: bolder;
+}
+.fancy-table2 table th:first-child {
+  color: transparent;
+}
+.fancy-table2 td:nth-child(1){
+  background-color: var(--color-dark-green);
+  font-weight: bolder;
+}

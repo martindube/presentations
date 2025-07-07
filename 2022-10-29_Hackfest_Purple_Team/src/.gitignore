@@ -1,0 +1,7 @@
+*.pdf
+**.bkp
+**.dtmp
+.DS_Store
+Navigator/data/baseline.json
+Ressources/.DS_Store
+Ressources/.DS_Store

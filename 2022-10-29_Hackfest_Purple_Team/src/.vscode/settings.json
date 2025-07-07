@@ -1,0 +1,8 @@
+{
+  "markdown.marp.themes": [
+    "./Ressources/presentation_themes/hf2022/custom_marp.css"
+  ],
+  "markdown-image.local.path": "../Ressources/images",
+  "markdown-image.base.fileNameFormat": "${mdname}-${YY}${MM}${DD}_${HH}${mm}${ss}",
+  "markdown.marp.enableHtml": true,
+}

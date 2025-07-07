@@ -1,0 +1,85 @@
+{
+  "name": "",
+  "versions": {
+    "attack": "9",
+    "navigator": "4.6.5",
+    "layer": "4.3"
+  },
+  "domain": "enterprise-attack",
+  "description": "",
+  "filters": {
+    "platforms": [
+      "Windows",
+      "Azure AD",
+      "Office 365",
+      "SaaS",
+      "IaaS",
+      "Google Workspace",
+      "PRE",
+      "Network",
+      "Containers",
+      "macOS",
+      "Linux"
+    ]
+  },
+  "sorting": 0,
+  "layout": {
+    "layout": "side",
+    "aggregateFunction": "average",
+    "showID": false,
+    "showName": true,
+    "showAggregateScores": false,
+    "countUnscored": false
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566",
+      "tactic": "initial-access",
+      "color": "#f5cb1b",
+      "comment": "",
+      "enabled": true,
+      "metadata": [
+        {
+          "name": "*GAP* Using a domain with an invalid DKIM",
+          "value": "Logged but should be Blocked"
+        },
+        {
+          "name": "*GAP* Using an aged domain in the finance category",
+          "value": "Logged but should be Detected"
+        },
+        {
+          "name": "From employee A to employee B",
+          "value": "Logged"
+        }                
+      ],
+      "links": [],
+      "showSubtechniques": false,
+      "score": 2
+    }
+  ],
+  "legendItems": [
+    {
+      "label": "Tested and compliant (1)",
+      "color": "#32e379"
+    },
+    {
+      "label": "Tested and 1pts gap (2)",
+      "color": "#f5cb1b"
+    },
+    {
+      "label": "Tested and 2pts gap (3)",
+      "color": "#f5881b"
+    },
+    {
+      "label": "Tested and 3pts gap (4)",
+      "color": "#f16e6e"
+    }
+  ],
+  "metadata": [],
+  "links": [],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#dddddd",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false
+}
